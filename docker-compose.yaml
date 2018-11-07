@@ -1,0 +1,62 @@
+# Run docker-compose up --build and navigate to localhost:6001 in your browser
+version: "3.3"
+services:
+  # Web server hosting front end page
+  scooters_web:
+    build: ./scooters_web
+    depends_on:
+      - scooters_server
+    # Wait for scooters_server to start before starting node with timeout specified in seconds
+    command: sh -c './utilities/wait-for-it.sh scooters_server:5000 --timeout=20 -- node index.js'
+    healthcheck:
+      # This command is run internally within the container
+      # that is why we are pointing towards port 5000
+      test: curl -p 127.0.0.1:6001/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    image: local/scooters_web:latest
+    container_name: scooters_web
+    ports:
+      - "6001:6001"
+    environment:
+      - WEBPORT=6001
+
+  # Backend
+  scooters_server:
+    build: ./scooters_server
+    depends_on:
+      - scooters_db
+    # Wait for scooters_db to start before starting node with timeout specified in seconds
+    command: sh -c './utilities/wait-for-it.sh scooters_db:5001 --timeout=20 -- node index.js'
+    healthcheck:
+      # This command is run internally within the container
+      # that is why we are pointing towards port 5000
+      test: curl -p 127.0.0.1:5000/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    image: local/scooters_server:latest
+    container_name: scooters_server
+    ports:
+      - "5000:5000"
+    environment:
+      - SERVERPORT=5000
+      - SCOOTERSDBURL=http://scooters_db:5001/api/scooters
+
+  # FakeDB
+  scooters_db:
+    build: ./scooters_db
+    healthcheck:
+      # This command is run internally within the container
+      # that is why we are pointing towards port 5001
+      test: curl -p 127.0.0.1:5001/api/monitoring/ping || exit 1
+      interval: 1m
+      timeout: 10s
+      retries: 3
+    image: local/scooters_db:latest
+    container_name: scooters_db
+    ports:
+      - "5001:5001"
+    environment:
+      - PORT=5001   
