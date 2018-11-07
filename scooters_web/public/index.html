@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chooi Guan's amazing scooter locator</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="floating-panel">
+      Chooi Guan's amazing scooter locator <br>
+      ** Start dragging the marker! ** <br>
+      Show me the closest: <input type="text" id="closest" value="3"> scooters <br>
+      Within distance (metres): <input type="text" id="distance" value="20000"> meters <br>
+      of the red marker which is at (lat, lng) <input type="text" readonly id="marker"><br>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="/scripts/init.js"></script>
+    <!-- https://developers.google.com/maps/documentation/javascript/geometry -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrk3sj1hBe3kgQ_vfwSg0471i9uIMsJfE&libraries=geometry&callback=initMap"
+        async defer></script>
+  </body>
+</html>
