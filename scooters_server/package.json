@@ -1,0 +1,18 @@
+{
+  "name": "scooters",
+  "version": "1.0.0",
+  "description": "scooters backend by Lim Chooi Guan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lim, Chooi Guan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "request": "^2.88.0",
+    "spherical-geometry-js": "^1.0.1"
+  }
+}
