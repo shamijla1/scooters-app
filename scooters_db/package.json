@@ -1,0 +1,17 @@
+{
+  "name": "scooters-database",
+  "version": "1.0.0",
+  "description": "scooters database by Lim Chooi Guan",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lim, Chooi Guan",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "body-parser": "^1.18.2",
+    "spherical-geometry-js": "^1.0.1"
+  }
+}
