@@ -10,7 +10,7 @@ services:
     command: sh -c './utilities/wait-for-it.sh scooters_server:5000 --timeout=20 -- node index.js'
     healthcheck:
       # This command is run internally within the container
-      # that is why we are pointing towards port 5000
+      # that is why we are pointing towards port 6001
       test: curl -p 127.0.0.1:6001/api/monitoring/ping || exit 1
       interval: 1m
       timeout: 10s
