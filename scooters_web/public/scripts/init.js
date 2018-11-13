@@ -39,6 +39,8 @@ function updateSeekerMarker() {
 
   // Perform the ajax call to the backend
   $.ajax({
+    // Hardcoded URL, in real life you would retrieve
+    // this from a config file or another endpoint
     url: 'http://localhost:5000/api/closestScooters',
     data: JSON.stringify({
       "scooterClosestDesiredCount": closest,
