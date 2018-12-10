@@ -69,17 +69,23 @@ function dropOffQuantitiesAtLocation(idealQuantitiesAtLocation, scooterLocations
       if (distanceBetweenScooterAndPoint <= proximityRadius && qty > 0) {
         //console.log('Distance is ' + distanceBetweenScooterAndPoint);
         var key = idealLat + " " + idealLng;
+        var added = false;
         if (results[key] != null) {
           if (results[key].count < qty) {
             results[key].count = results[key].count + 1;
+            added = true;
           }
         } else {
+          added = true;
           results.push({key: idealLat + " " + idealLng, lat: idealLat, lng: idealLng, count: 1});
         }
-        // remove the scooter
-        scooterLocations.splice(j,1);
-        // decrement counter
-        j--;
+
+        if (added) {
+          // remove the scooter
+          scooterLocations.splice(j,1);
+          // decrement counter
+          j--;
+        }
       }
     }
 
