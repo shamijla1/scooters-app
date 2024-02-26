@@ -1,4 +1,9 @@
 steps:
+- name: 'docker/compose:1.29.2'
+  args: ['up', '--build', '-d']
+  env:
+  - 'PROJECT_ID=$PROJECT_ID'
+
   # Stap 1: Bouw de Docker image
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/my-app:$SHORT_SHA', '.']
