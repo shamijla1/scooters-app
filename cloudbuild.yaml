@@ -15,6 +15,6 @@ steps:
     - 'CLOUDSDK_CONTAINER_CLUSTER=${_CLUSTER}'
 
 substitutions:
-  _ZONE: 'jouw-gke-zone'
-  _CLUSTER: 'jouw-gke-cluster'
+  _ZONE: 'us-central1'
+  _CLUSTER: 'scooter-app-p'
   _NAMESPACE: 'default'
